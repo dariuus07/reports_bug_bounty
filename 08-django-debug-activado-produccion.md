@@ -141,3 +141,13 @@ The same vulnerability exists on the second instance. Same steps, same results:
 
 ---
 
+## Remediation
+
+Set `DEBUG = False` in the Django production settings file (`django_[FRAMEWORK]/settings.py` or the production-specific settings module). This is a one-line change that immediately stops Django from rendering debug error pages to users.
+
+Additionally, consider:
+- Setting `ALLOWED_HOSTS` to `['[TARGET-1]']` instead of `['*']`
+- Setting `SESSION_COOKIE_SECURE = True` and `CSRF_COOKIE_SECURE = True` for HTTPS enforcement
+- Configuring a custom error handler for 404 and 500 responses
+
+
